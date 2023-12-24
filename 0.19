@@ -1,0 +1,14 @@
+Collecting pandas
+  Using cached pandas-2.1.4-cp310-cp310-win_amd64.whl.metadata (18 kB)
+Collecting numpy<2,>=1.22.4 (from pandas)
+  Using cached numpy-1.26.2-cp310-cp310-win_amd64.whl.metadata (61 kB)
+Collecting python-dateutil>=2.8.2 (from pandas)
+  Using cached python_dateutil-2.8.2-py2.py3-none-any.whl (247 kB)
+Collecting pytz>=2020.1 (from pandas)
+  Using cached pytz-2023.3.post1-py2.py3-none-any.whl.metadata (22 kB)
+Collecting tzdata>=2022.1 (from pandas)
+  Using cached tzdata-2023.3-py2.py3-none-any.whl (341 kB)
+Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas)
+  Using cached six-1.16.0-py2.py3-none-any.whl (11 kB)
+Downloading pandas-2.1.4-cp310-cp310-win_amd64.whl (10.7 MB)
+   ---                                      0.9/10.7 MB 6.9 kB/s eta 0:23:38
