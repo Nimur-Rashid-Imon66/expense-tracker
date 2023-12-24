@@ -1,3 +1,7 @@
+# My Contribution
+- Parameter Insertion
+- Rearranged Save Expence Record
+
 # Project Features
 - User Authentication: Secure login system for personal use.
 - Expense Management: Ability to add, view, edit, and delete expenses.
