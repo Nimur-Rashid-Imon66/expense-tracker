@@ -10,8 +10,7 @@ def save_expense(cursor, db):
     if 'flag' not in st.session_state:
         st.session_state.flag = 0
 
-    df = pd.read_sql('''SELECT * FROM expense''', con=db)
-    column_names,column_types = extra_field(df,db)
+    column_names,column_types = extra_field(db)
     col = select_columns(db)
     
     
@@ -136,19 +135,29 @@ def save_expense(cursor, db):
 
 
 def parameter_listing(cursor, db):
+    dfx = pd.read_sql("SHOW COLUMNS FROM expense", con=db)
     st.header('⚙️🛠️ Parameter Addition')
     with st.form(key='add_parameter_form', clear_on_submit=True, border=True):
-        all_data_type = ['VARCHAR(512)', 'double', 
-                            'longtext', 'DATE','TIMESTAMP']
+        all_data_type = ['VARCHAR(512)', 'double','longtext', 'DATE','TIMESTAMP']
+        options = ['Add Column','Delete Column']
+        st.write('Available Fileds are :',dfx['Field'][8:]+"   "+dfx['Type'][8:])
+        choose_options = st.selectbox('Choose Your Operation Type*',options)
         parameter_name = st.text_input('Parameter Name*')
         data_type = st.selectbox('Expense Category*', all_data_type)
+        
         if st.form_submit_button(label='Submit'):
+            query = ""
+            if choose_options == 'Add Column':
+                query = f"ALTER TABLE expense ADD {parameter_name} {data_type}"
+            else:
+                query = f"ALTER TABLE expense DROP {parameter_name}"
+                
             if not(parameter_name and data_type):
                 st.error('Please fill all the * fields')
             else:
-                query = f"ALTER TABLE expense ADD {parameter_name} {data_type}"
+                # query = f"ALTER TABLE expense ADD {parameter_name} {data_type}"
                 # st.write(query, values)
                 cursor.execute(query)
                 db.commit()
-                st.success("Parameter Inserted Successfully!")
-                st.balloons()        
+                st.success(f"{choose_options} Successful!")
+                st.balloons()      

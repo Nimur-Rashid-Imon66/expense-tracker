@@ -154,7 +154,7 @@ def select_columns(db):
     col = [df['Field'][x] for x in range(len(df['Field'])) if not (x==0 or x==6 or x==7)]
     return col
 
-def extra_field(df,db):
+def extra_field(db):
     query = "SHOW COLUMNS FROM expense"
     df = pd.read_sql(query, con=db)
     column_names = df['Field'].tolist()
